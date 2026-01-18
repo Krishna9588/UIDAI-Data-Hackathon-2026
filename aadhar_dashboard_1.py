@@ -114,7 +114,7 @@ def load_data_recursive():
 
 
 # Execute Load
-with st.spinner('Scanning folders for UIDAI datasets...'):
+with st.spinner('🚀 Scanning folders for UIDAI datasets...'):
     data_dict, log_counts = load_data_recursive()
 
 df_enrol = data_dict['enrol']
@@ -124,7 +124,7 @@ df_demo = data_dict['demo']
 # Check if data loaded
 total_files = sum(log_counts.values())
 if total_files == 0:
-    st.error("No matching CSV files found!")
+    st.error("⚠️ No matching CSV files found!")
     st.warning(f"Searched in: `{os.getcwd()}` and all subfolders.")
     st.info(
         "Expected filenames should contain: `api_data_aadhar_enrolment`, `api_data_aadhar_biometric`, or `api_data_aadhar_demographic`.")
@@ -137,17 +137,17 @@ with st.sidebar:
     st.title("UIDAI Analytics 2026")
     st.image("https://upload.wikimedia.org/wikipedia/en/c/cf/Aadhaar_Logo.svg", width=150)
 
-    st.markdown("### Navigation")
+    st.markdown("### 🎯 Navigation")
     page = st.radio("Go to:",
-                    ["Executive Summary", "Border Security", "Operational Efficiency", "Societal Trends", "Raw Data Inspector"])
+                    ["Executive Summary", "Border Security", "Ops Efficiency", "Societal Trends", "Raw Data Inspector"])
 
     st.markdown("---")
-    st.markdown("### Data Source Status")
+    st.markdown("### 📂 Data Source Status")
 
 
-    # Visual status  indicators
+    # Visual status indicators
     def status_icon(count):
-        return "✔️" if count > 0 else "❌"
+        return "✅" if count > 0 else "❌"
 
 
     st.write(f"{status_icon(log_counts['enrol'])} **Enrolment Files:** {log_counts['enrol']}")
@@ -183,21 +183,21 @@ if page == "Executive Summary":
 
     # Main problem Statement
     st.info(
-        "**Core Problem:** The system operates on a 'One-Size-Fits-All' model, failing to distinguish between **Urban Maintenance** (Phone updates), **Border Security** (Migration velocity), and **Rural Catch-up** (Adult enrolment).")
+        "💡 **Core Problem:** The system operates on a 'One-Size-Fits-All' model, failing to distinguish between **Urban Maintenance** (Phone updates), **Border Security** (Migration velocity), and **Rural Catch-up** (Adult enrolment).")
 
     # 4 Key Insights Cards
     col1, col2 = st.columns(2)
     with col1:
         st.markdown("""
         <div class='metric-card'>
-            <h4>1. Border Integrity Risk</h4>
+            <h4>🚨 1. Border Integrity Risk</h4>
             <p>50% of high-growth districts are in sensitive border zones. Enrolment velocity here exceeds natural population growth rates.</p>
         </div>
         """, unsafe_allow_html=True)
         st.write("")
         st.markdown("""
         <div class='metric-card'>
-            <h4>2. The "Tuesday/Saturday" Crush</h4>
+            <h4>📉 2. The "Tuesday/Saturday" Crush</h4>
             <p>Static server allocation causes massive load spikes on Saturdays (14M) and Tuesdays (7.5M), wasting capacity on other days.</p>
         </div>
         """, unsafe_allow_html=True)
@@ -205,14 +205,14 @@ if page == "Executive Summary":
     with col2:
         st.markdown("""
         <div class='metric-card'>
-            <h4>3. The "Hidden Adult" Cohort</h4>
+            <h4>👴 3. The "Hidden Adult" Cohort</h4>
             <p>Meghalaya & Assam show >30% adult enrolment share (vs <1% National Avg), indicating a massive "Catch-up" phase.</p>
         </div>
         """, unsafe_allow_html=True)
         st.write("")
         st.markdown("""
         <div class='metric-card'>
-            <h4>4. The Digital Divide</h4>
+            <h4>📱 4. The Digital Divide</h4>
             <p>Rural citizens update Demographics (Phones) 20x more than Biometrics, risking database obsolescence.</p>
         </div>
         """, unsafe_allow_html=True)
@@ -221,7 +221,7 @@ if page == "Executive Summary":
 # 5. PAGE: BORDER SECURITY
 # ==========================================
 elif page == "Border Security":
-    st.title("Insight 1: The Border Velocity Anomaly")
+    st.title("🚨 Insight 1: The Border Velocity Anomaly")
     st.markdown("Comparing **New Enrolment Velocity** between Border Districts and Metro Hubs.")
 
     if not df_enrol.empty:
@@ -257,10 +257,10 @@ elif page == "Border Security":
         st.error("No Enrolment Data Found.")
 
 # ==========================================
-# 6. PAGE: Operational EFFICIENCY
+# 6. PAGE: OPS EFFICIENCY
 # ==========================================
-elif page == "Operational Efficiency":
-    st.title("Insight 2: Operational Heartbeat")
+elif page == "Ops Efficiency":
+    st.title("⚙️ Insight 2: Operational Heartbeat")
     st.markdown("Analyzing Server Load to Optimize Infrastructure.")
 
     if not df_demo.empty:
@@ -361,7 +361,7 @@ elif page == "Societal Trends":
 # 8. PAGE: RAW DATA INSPECTOR
 # ==========================================
 elif page == "Raw Data Inspector":
-    st.title("Data Inspector")
+    st.title("🔍 Data Inspector")
     st.markdown("Filter and explore the raw data used for this analysis.")
 
     dataset_choice = st.selectbox("Select Dataset", ["Enrolment", "Biometric Updates", "Demographic Updates"])
